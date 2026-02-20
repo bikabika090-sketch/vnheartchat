@@ -1,7 +1,7 @@
-# vnheart Slash Bot
+# vnheart Bot
 
-Su dung slash command /chat
+Bot Discord chat nguoi su dung lenh /chat
 
-## Railway ENV
-TOKEN=bot_token
-CLIENT_ID=application_id
+## Railway
+- Add Variable: TOKEN
+- Deploy va chay 24/24

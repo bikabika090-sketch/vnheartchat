@@ -1,7 +1,7 @@
 {
   "name": "silent-chat-bot",
-  "version": "1.0.0",
-  "description": "Discord bot with /chat modal command",
+  "version": "1.1.0",
+  "description": "Discord bot with /chat modal command (Guild Sync)",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

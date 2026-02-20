@@ -1,11 +1,14 @@
-# Silent Chat Bot
+# Silent Chat Bot (Guild Sync Fixed)
 
 ## Setup
 
 1. Extract zip
 2. Run: npm install
-3. Edit config.json (put role ID)
-4. Edit .env (put TOKEN + CLIENT_ID)
+3. Edit config.json (role already set)
+4. Edit .env:
+   - TOKEN
+   - CLIENT_ID
+   - GUILD_ID (Server ID)
 5. Run: npm start
 
-Use /chat to open modal and send message.
+Now /chat will instantly show modal popup.

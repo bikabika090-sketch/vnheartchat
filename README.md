@@ -1,7 +1,11 @@
-# vnheart Slash Bot
+# Silent Chat Bot
 
-Su dung slash command /chat
+## Setup
 
-## Railway ENV
-TOKEN=bot_token
-CLIENT_ID=application_id
+1. Extract zip
+2. Run: npm install
+3. Edit config.json (put role ID)
+4. Edit .env (put TOKEN + CLIENT_ID)
+5. Run: npm start
+
+Use /chat to open modal and send message.

@@ -1,7 +1,7 @@
 {
-  "name": "vnheart-bot",
-  "version": "1.0.0",
-  "description": "Bot chat nguoi vnheart",
+  "name": "vnheart-slash-bot",
+  "version": "1.1.0",
+  "description": "Bot vnheart su dung slash command",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

@@ -1,41 +1,61 @@
-const { Client, GatewayIntentBits } = require("discord.js");
+const { 
+  Client, 
+  GatewayIntentBits, 
+  SlashCommandBuilder, 
+  REST, 
+  Routes 
+} = require("discord.js");
+
 const config = require("./config.json");
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-  ]
+  intents: [GatewayIntentBits.Guilds]
 });
+
+const command = new SlashCommandBuilder()
+  .setName("chat")
+  .setDescription("Bot vnheart chat nhu nguoi")
+  .addStringOption(option =>
+    option
+      .setName("noidung")
+      .setDescription("Noi dung muon bot gui")
+      .setRequired(true)
+  );
+
+const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
+
+(async () => {
+  try {
+    await rest.put(
+      Routes.applicationCommands(process.env.CLIENT_ID),
+      { body: [command.toJSON()] }
+    );
+    console.log("✅ Slash command /chat da dang ky");
+  } catch (err) {
+    console.error(err);
+  }
+})();
 
 client.once("ready", () => {
   console.log(`🤖 Bot ${config.botName} da online!`);
 });
 
-client.on("messageCreate", async (message) => {
-  if (message.author.bot) return;
-  if (!message.content.startsWith(config.prefix)) return;
+client.on("interactionCreate", async interaction => {
+  if (!interaction.isChatInputCommand()) return;
+  if (interaction.commandName !== "chat") return;
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/);
-  const command = args.shift()?.toLowerCase();
-
-  if (command === "chat") {
-    if (!message.member.roles.cache.has(config.allowedRoleId)) {
-      return message.reply("❌ Bạn không có quyền dùng lệnh này.");
-    }
-
-    const content = args.join(" ");
-    if (!content) {
-      return message.reply("❗ Dùng: /chat <nội dung>");
-    }
-
-    await message.delete().catch(() => {});
-
-    message.channel.send({
-      content: content
+  if (!interaction.member.roles.cache.has(config.allowedRoleId)) {
+    return interaction.reply({ 
+      content: "❌ Ban khong co quyen", 
+      ephemeral: true 
     });
   }
+
+  const text = interaction.options.getString("noidung");
+
+  await interaction.reply({
+    content: text
+  });
 });
 
 client.login(process.env.TOKEN);

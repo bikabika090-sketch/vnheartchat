@@ -1,13 +1,12 @@
 {
-  "name": "silent-chat-bot",
+  "name": "vnheart-slash-bot",
   "version": "1.1.0",
-  "description": "Discord bot with /chat modal command (Guild Sync)",
+  "description": "Bot vnheart su dung slash command",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1"
+    "discord.js": "^14.14.1"
   }
 }

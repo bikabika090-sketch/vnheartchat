@@ -9,7 +9,7 @@ const {
 const config = require("./config.json");
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds]
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
 });
 
 const command = new SlashCommandBuilder()
@@ -53,9 +53,9 @@ client.on("interactionCreate", async interaction => {
 
   const text = interaction.options.getString("noidung");
 
-  await interaction.reply({
-    content: text
-  });
+  await interaction.deferReply({ ephemeral: true });
+  await interaction.deleteReply();
+  await interaction.channel.send(text);
 });
 
 client.login(process.env.TOKEN);
